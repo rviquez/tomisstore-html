@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tomi's Store</title>
+    <link rel="stylesheet" href="styles/style.css">
+    <link rel="manifest" href="/manifest.json">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" href="favicon.ico" type="image/x-icon" />
+    <link rel="apple-touch-icon" href="images/apple-touch-icon.png">
+    <meta name="theme-color" content="white" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Tomi's Store">
+    <meta name="msapplication-TileImage" content="images/favicon-32x32.png">
+    <meta name="msapplication-TileColor" content="#FFFFFF">
+
+<body class="fullscreen">
+    <header class="header">
+        <h1>
+            Tomi's Shop
+        </h1>
+        <button id="butInstall" aria-label="Install" hidden></button>
+        <button id="butRefresh" aria-label="Refresh"></button>
+    </header>
+    <main class="main">
+
+        <button id="butAdd" class="fab" aria-label="Add">
+            <span class="icon add"></span>
+        </button>
+
+        <div id="weather-template" class="weather-card" hidden>
+            <div class="card-spinner">
+                <svg viewBox="0 0 32 32" width="32" height="32">
+                    <circle cx="16" cy="16" r="14" fill="none"></circle>
+                </svg>
+            </div>
+            <button class="remove-city">&times;</button>
+            <div class="location">&nbsp;</div>
+            <div class="description">&nbsp;</div>
+            <img id="photo" class="photo">
+        </div>
+    </main>
+
+    <div id="addDialogContainer">
+        <div class="dialog">
+            <div class="dialog-title">Add new toy</div>
+            <div class="dialog-body">
+                <div>
+                    <label for="selectCityToAdd">Articulo: </label>
+                    <input name="selectCityToAdd" id="selectCityToAdd" aria-label="City to add">
+                 </div>
+                <div>
+                    <label for="price">Precio: </label>
+                    <input type="number" name="price" id="price">
+                </div>
+                <div>
+                    <label for="productPhoto">Foto</label>
+                    <button id="take">Take Photo</button>
+                    <div id="photoBooth" hidden>
+                        <video id="video" width="200" height="200" autoplay></video>
+                        <canvas id="canvas" width="200" height="150"></canvas>
+                        <img id="photo1" class="photo1">
+                        <button id="snap">Snap Photo</button>
+                        
+                    </div>
+                </div>
+            </div>
+            <div class="dialog-buttons">
+                <button id="butDialogCancel" class="button">Cancel</button>
+                <button id="butDialogAdd" class="button">Add</button>
+            </div>
+        </div>
+    </div>
+</body>
+ <script src="/scripts/app.js"></script>
+ <script src="/scripts/install.js"></script>
+ <script>
+     if ('serviceWorker' in navigator) {
+         window.addEventListener('load', () => {
+             navigator.serviceWorker.register('/sw.js')
+                 .then((reg) => {
+                     console.log('Service worker registered.', reg);
+                 });
+         });
+     }
+ </script>
+</html>
